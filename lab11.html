@@ -1,0 +1,421 @@
+Question-1
+Write a JavaScript to
+(i) Create a dynamic table with three rows and three columns (ii) Change the color of the Button from red to green color on Mouse Over.
+(iii)Change the color of the Textbox from green to yellow color on Focus and display a greeting message on Change
+Note: Both button and textbox should be created using CreateElement
+(iv)Create an input field and a button. When the button is double clicked, add the input text as a new <li> item to an unordered list.
+(v) Create two input fields: one for accepting input and another for counting and displaying the number of times any key is pressed.
+
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+        }
+        table {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Dynamic Table</h3>
+    <div id="table-container"></div>
+
+    <h3>Button and Textbox with Events</h3>
+    <div id="controls-container"></div>
+
+    <h3>Add List Item on Double Click</h3>
+    <input type="text" id="listInput" placeholder="Enter text">
+    <button id="addListItem">Add to List</button>
+    <ul id="unorderedList"></ul>
+
+    <h3>Key Press Counter</h3>
+    <input type="text" id="keyPressInput" placeholder="Type something">
+    <input type="text" id="keyPressCount" placeholder="Key Press Count" readonly>
+
+    <script>
+        // (i) Create a dynamic table (3x3)
+        function createTable() {
+            let table = document.createElement("table");
+            for (let i = 0; i < 3; i++) {
+                let row = document.createElement("tr");
+                for (let j = 0; j < 3; j++) {
+                    let cell = document.createElement("td");
+                    cell.innerText = `(${i + 1}, ${j + 1})`;
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            document.getElementById("table-container").appendChild(table);
+        }
+
+        // (ii) Create a button and change its color on mouse over
+        function createButton() {
+            let button = document.createElement("button");
+            button.innerText = "Hover Me!";
+            button.style.backgroundColor = "red";
+            button.style.color = "white";
+            button.style.padding = "10px";
+            button.style.border = "none";
+            button.style.cursor = "pointer";
+
+            button.addEventListener("mouseover", function () {
+                button.style.backgroundColor = "green";
+            });
+
+            button.addEventListener("mouseout", function () {
+                button.style.backgroundColor = "red";
+            });
+
+            document.getElementById("controls-container").appendChild(button);
+        }
+
+        // (iii) Create a textbox, change color on focus, and show message on change
+        function createTextbox() {
+            let textbox = document.createElement("input");
+            textbox.type = "text";
+            textbox.placeholder = "Focus and Change";
+            textbox.style.padding = "5px";
+            textbox.style.border = "1px solid black";
+            textbox.style.backgroundColor = "green";
+
+            textbox.addEventListener("focus", function () {
+                textbox.style.backgroundColor = "yellow";
+            });
+
+            textbox.addEventListener("blur", function () {
+                textbox.style.backgroundColor = "green";
+            });
+
+            textbox.addEventListener("change", function () {
+                alert("Greeting! You changed the text.");
+            });
+
+            document.getElementById("controls-container").appendChild(textbox);
+        }
+
+        // (iv) Add list item on double click
+        document.getElementById("addListItem").addEventListener("dblclick", function () {
+            let inputText = document.getElementById("listInput").value.trim();
+            if (inputText !== "") {
+                let li = document.createElement("li");
+                li.innerText = inputText;
+                document.getElementById("unorderedList").appendChild(li);
+                document.getElementById("listInput").value = "";
+            }
+        });
+
+        // (v) Key press counter
+        let keyCount = 0;
+        document.getElementById("keyPressInput").addEventListener("keypress", function () {
+            keyCount++;
+            document.getElementById("keyPressCount").value = keyCount;
+        });
+
+        // Call functions to create elements
+        createTable();
+        createButton();
+        createTextbox();
+    </script>
+
+</body>
+</html>
+
+
+Question-2
+(i) Create a simple stopwatch with "Start", "Stop", and "Reset" buttons using JavaScript
+event listeners.
+(ii) Create a text box to accept the Date of Birth and calculate the age on mouseover using an event listener.
+(iii) Create a textarea with a character counter that updates dynamically as the user types using an event listener
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Event Listeners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .stopwatch, .age-calculator, .char-counter {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+        .stopwatch button, .age-calculator input, .char-counter textarea {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- (i) Stopwatch -->
+    <div class="stopwatch">
+        <h3>Stopwatch</h3>
+        <p id="time">00:00:00</p>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+
+    <!-- (ii) Age Calculator -->
+    <div class="age-calculator">
+        <h3>Age Calculator</h3>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob">
+        <p id="age">Age: </p>
+    </div>
+
+    <!-- (iii) Character Counter -->
+    <div class="char-counter">
+        <h3>Character Counter</h3>
+        <textarea id="textarea" rows="4" cols="30" maxlength="200"></textarea>
+        <p id="charCount">Characters: 0 / 200</p>
+    </div>
+
+    <script>
+        // (i) Stopwatch
+        let timer;
+        let seconds = 0, minutes = 0, hours = 0;
+        let running = false;
+
+        function updateTime() {
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            document.getElementById("time").innerText =
+                (hours < 10 ? "0" : "") + hours + ":" +
+                (minutes < 10 ? "0" : "") + minutes + ":" +
+                (seconds < 10 ? "0" : "") + seconds;
+        }
+
+        document.getElementById("start").addEventListener("click", function () {
+            if (!running) {
+                timer = setInterval(updateTime, 1000);
+                running = true;
+            }
+        });
+
+        document.getElementById("stop").addEventListener("click", function () {
+            clearInterval(timer);
+            running = false;
+        });
+
+        document.getElementById("reset").addEventListener("click", function () {
+            clearInterval(timer);
+            running = false;
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            document.getElementById("time").innerText = "00:00:00";
+        });
+
+        // (ii) Age Calculator
+        document.getElementById("dob").addEventListener("mouseover", function () {
+            let dob = new Date(this.value);
+            if (!isNaN(dob.getTime())) {
+                let today = new Date();
+                let age = today.getFullYear() - dob.getFullYear();
+                let monthDiff = today.getMonth() - dob.getMonth();
+                let dayDiff = today.getDate() - dob.getDate();
+
+                if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                    age--;
+                }
+
+                document.getElementById("age").innerText = "Age: " + age;
+            } else {
+                document.getElementById("age").innerText = "Age: Invalid Date";
+            }
+        });
+
+        // (iii) Character Counter
+        document.getElementById("textarea").addEventListener("input", function () {
+            let maxLength = 200;
+            let charCount = this.value.length;
+            document.getElementById("charCount").innerText = `Characters: ${charCount} / ${maxLength}`;
+        });
+
+    </script>
+
+</body>
+</html>
+Question-3
+(i)	Set the timer to display the current time (ii) Print the form content. Use getElementsByName to display Gender, Country and Preferences (iii)Validate (a) All Mandatory Fields (represented by *). If empty focus on the same field. (b) Name should not exceed 15 characters (c) Address – to be specified in Text Area (d) Zip code should be numeric and validated the maximum digits (e) Phone numbers should be numeric and validated the maximum digits 10 (f) e-mail syntax should be validated (g) Password should contain a number, character & a special character and length should not exceed 15 and recede 8 (h) PAN card number – Textbox (validate such that the PAN number is 10 digits and follows the pattern)
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Form Validation</title>
+    <script>
+        // (i) Set timer to display current time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById("time").innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+
+        // (ii) Print form content using getElementsByName
+        function printFormContents() {
+            let gender = document.getElementsByName("gender");
+            let country = document.getElementsByName("country")[0];
+            let preferences = document.getElementsByName("preferences");
+
+            let selectedGender = "";
+            for (let i = 0; i < gender.length; i++) {
+                if (gender[i].checked) selectedGender = gender[i].value;
+            }
+
+            let selectedPreferences = [];
+            for (let i = 0; i < preferences.length; i++) {
+                if (preferences[i].checked) selectedPreferences.push(preferences[i].value);
+            }
+
+            alert(`Gender: ${selectedGender}\nCountry: ${country.value}\nPreferences: ${selectedPreferences.join(", ")}`);
+        }
+
+        // (iii) Form Validation
+        function validateForm() {
+            let name = document.getElementById("name");
+            let address = document.getElementById("address");
+            let zip = document.getElementById("zip");
+            let phone = document.getElementById("phone");
+            let email = document.getElementById("email");
+            let password = document.getElementById("password");
+            let verifyPassword = document.getElementById("verifyPassword");
+            let pan = document.getElementById("pan");
+
+            // (a) Mandatory fields
+            let fields = [name, zip, phone, email, password, verifyPassword, pan];
+            for (let field of fields) {
+                if (field.value.trim() === "") {
+                    alert(`${field.name} is required`);
+                    field.focus();
+                    return false;
+                }
+            }
+
+            // (b) Name length validation
+            if (name.value.length > 15) {
+                alert("Name should not exceed 15 characters.");
+                name.focus();
+                return false;
+            }
+
+            // (c) Address validation
+            if (address.value.trim() === "") {
+                alert("Address is required.");
+                address.focus();
+                return false;
+            }
+
+            // (d) Zip Code Validation
+            if (!/^\d{6}$/.test(zip.value)) {
+                alert("Zip Code should be 6-digit numeric.");
+                zip.focus();
+                return false;
+            }
+
+            // (e) Phone number validation
+            if (!/^\d{10}$/.test(phone.value)) {
+                alert("Phone number must be 10 digits.");
+                phone.focus();
+                return false;
+            }
+
+            // (f) Email Validation
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email.value)) {
+                alert("Invalid email format.");
+                email.focus();
+                return false;
+            }
+
+            // (g) Password validation (8-15 chars, at least one number, one special character, and one letter)
+            let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+            if (!passwordPattern.test(password.value)) {
+                alert("Password must be 8-15 characters, include a number, a letter, and a special character.");
+                password.focus();
+                return false;
+            }
+            if (password.value !== verifyPassword.value) {
+                alert("Passwords do not match.");
+                verifyPassword.focus();
+                return false;
+            }
+
+            // (h) PAN Card Validation (10-digit alphanumeric format)
+            let panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+            if (!panPattern.test(pan.value)) {
+                alert("Invalid PAN Number. Format: ABCDE1234F.");
+                pan.focus();
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
+<body onload="updateTime()">
+    <h2>Test JavaScript Form Validation</h2>
+    <div style="float: right; border: 1px solid black; padding: 5px;">
+        Time: <span id="time"></span>
+    </div>
+    <form onsubmit="return validateForm()">
+        <label>Name*: <input type="text" id="name" name="name"></label><br><br>
+        <label>Address*: <textarea id="address" name="address"></textarea></label><br><br>
+        <label>Zip Code*: <input type="text" id="zip" name="zip"></label><br><br>
+        <label>Country*: 
+            <select name="country">
+                <option value="">Please select...</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+            </select>
+        </label><br><br>
+        <label>Gender*: 
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+        </label><br><br>
+        <label>Preferences*: 
+            <input type="checkbox" name="preferences" value="Red"> Red
+            <input type="checkbox" name="preferences" value="Green"> Green
+            <input type="checkbox" name="preferences" value="Blue"> Blue
+        </label><br><br>
+        <label>Phone*: <input type="text" id="phone" name="phone"></label><br><br>
+        <label>Email*: <input type="text" id="email" name="email"></label><br><br>
+        <label>Password (8-15 chars)*: <input type="password" id="password" name="password"></label><br><br>
+        <label>Verify Password*: <input type="password" id="verifyPassword" name="verifyPassword"></label><br><br>
+        <label>PAN No*: <input type="text" id="pan" name="pan"></label><br><br>
+        
+        <button type="submit">SEND</button>
+        <button type="reset">CLEAR</button>
+    </form>
+
+    <button onclick="printFormContents()">Print Form Contents</button>
+</body>
+</html>
