@@ -1,0 +1,102 @@
+calc.css
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1633</title>
+    <link rel="stylesheet" href="calc.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">0</div>
+        <div class="buttons">
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn operator">/</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn operator">*</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn operator">-</button>
+            <button class="btn">0</button>
+            <button class="btn">.</button>
+            <button class="btn operator">=</button>
+            <button class="btn operator">+</button>
+            <button class="btn clear">C</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+/* General Calculator Styling */
+.calculator {
+    width: 220px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    border: 2px solid #2a9d8f;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Display Screen */
+.display {
+    background-color: #f4a261;
+    color: #ffffff;
+    text-align: right;
+    font-size: 24px;
+    padding: 15px;
+    border-bottom: 2px solid #264653;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+}
+
+/* Buttons */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+
+.btn {
+    background-color: #e9c46a;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #2a9d8f;
+    color: #fff;
+}
+
+.operator {
+    background-color: #264653;
+    color: #fff;
+}
+
+.operator:hover {
+    background-color: #f4a261;
+    color: #000;
+}
+
+.clear {
+    background-color: #e76f51;
+    color: white;
+    grid-column: span 4;
+    text-align: center;
+}
