@@ -1,0 +1,156 @@
+pets.html 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1373</title>
+    <link rel="stylesheet" href="webs.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="rainbow-effect">Welcome to Pet Animals World!</h1>
+        <div class="content">
+            <div class="description">
+                <h2>About Dogs</h2>
+                <p>Dogs are loyal companions and are known as man's best friend. They are playful, friendly, and protective.</p>
+            </div>
+            <div class="description">
+                <h2>About Cats</h2>
+                <p>Cats are independent and graceful animals. They can be affectionate and love playing with toys.</p>
+            </div>
+            <div class="description">
+                <h2>About Birds</h2>
+                <p>Birds are fascinating creatures, known for their beautiful feathers and songs. Many people love having them as pets.</p>
+            </div>
+        </div>
+        <div class="animation">
+            <svg id="ball-animation" width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="20" fill="yellow" />
+            </svg>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://www.w3schools.com/w3images/forest.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Rainbow Effect on Heading */
+.rainbow-effect {
+    font-size: 3em;
+    background-image: linear-gradient(to left, red, orange, yellow, green, blue, indigo, violet);
+    background-clip: text;
+    color: transparent; /* Ensures text is transparent */
+    -webkit-background-clip: text; /* Safari and older Webkit browsers */
+    -webkit-text-fill-color: transparent; /* Safari fix for text visibility */
+    animation: rainbow 5s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 0%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Multi-column Layout */
+.content {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.description {
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+    text-align: left;
+    line-height: 30pt;
+}
+
+.description h2 {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+/* Animation for Dog Playing with Ball */
+.animation {
+    margin-top: 50px;
+    animation: moveBall 3s linear infinite;
+}
+
+@keyframes moveBall {
+    0% {
+        transform: translate(0, 0) rotate(0deg) skew(0deg);
+    }
+    50% {
+        transform: translate(200px, 100px) rotate(180deg) skew(20deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg) skew(0deg);
+    }
+}
+
+
+college.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1373</title>
+    <style>
+        .outer {
+            margin: 25px;
+            padding: 20px;
+            border: 6px solid green;
+            background-color: rgb(255, 255, 0); /* Yellow - RGB color format */
+            width: 500px;
+        }
+        .middle {
+            margin: 20px;
+            padding: 20px;
+            border: 6px solid green;
+            background-color: rgb(211, 211, 211); /* Grey background */
+        }
+        .inner {
+            margin: 20px;
+            padding: 20px;
+            border: 6px solid green;
+            background-color: #0000FF; /* Blue background - Hexadecimal */
+            text-align: center;
+        }
+        .text {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+                <p class="text">My college life at VIT is a mix of fun and challenges. The campus is vibrant, with endless activities and events. Classes keep me busy, but I enjoy learning new things, especially in tech. Friends make everything better, from late-night study sessions to chilling at cafes. The best part? The diverse crowd and opportunities to grow beyond academics!
+p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
