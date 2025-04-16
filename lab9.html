@@ -1,0 +1,218 @@
+Question-1
+The following are the daily temperature recordings of NEWYORK city (In Fahrenheit)
+55,62,68,74,59,45,41,58,60,67,65,78,82,88,91,92,90,93,87,80,78,79,72,68,61,59,55,65
+Your JavaScript program should count and print the number of HOT days (High
+Temperature: 85 or higher), the number of PLEASANT days (High temperature: 60-84)
+and the number of COLD days (High temperature<60) in the city. It should also display
+the category of each temperature in an HTML Table.
+
+
+Code-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Analysis</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>New York City Temperature Analysis</h2>
+    <table>
+        <tr>
+            <th>Temperature (°F)</th>
+            <th>Category</th>
+        </tr>
+        <tbody id="tempTable"></tbody>
+    </table>
+    <p id="summary"></p>
+
+    <script>
+        const temperatures = [55, 62, 68, 74, 59, 45, 41, 58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93, 87, 80, 78, 79, 72, 68, 61, 59, 55, 65];
+        let hotDays = 0, pleasantDays = 0, coldDays = 0;
+        const table = document.getElementById("tempTable");
+
+        temperatures.forEach(temp => {
+            let category;
+            if (temp >= 85) {
+                category = "HOT";
+                hotDays++;
+            } else if (temp >= 60) {
+                category = "PLEASANT";
+                pleasantDays++;
+            } else {
+                category = "COLD";
+                coldDays++;
+            }
+            
+            const row = `<tr><td>${temp}</td><td>${category}</td></tr>`;
+            table.innerHTML += row;
+        });
+
+        document.getElementById("summary").innerHTML = 
+            `Hot Days: ${hotDays} | Pleasant Days: ${pleasantDays} | Cold Days: ${coldDays}`;
+    </script>
+</body>
+</html>
+
+
+Question-2
+A small airline has just purchased a computer for its newly automated reservations
+system. Write a JavaScript program to assign seats on each flight (capacity: 10 seats).
+Your program should display the following:
+• If the person types 1, assign a seat in the first-class section (seats 1–5).
+• If the person types 2, assign a seat in the economy section (seats 6–10).
+• When the first-class section is full, your program should ask the person if it is
+acceptable to be placed in the economy section (and vice versa)
+Allot the seats based on the above choices. Print a boarding pass indicating the person’s name, seat number and class
+Use one-dimensional array to represent the seating chart of the plane. Initialize all the elements of the array to 0 to indicate that all the seats are empty. As each seat is assigned, set the corresponding elements of the array to 1 to indicate that the seat is no longer available.
+
+
+Code-
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airline Seat Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Airline Seat Reservation System</h2>
+    <button onclick="assignSeat(1)">First Class (1-5)</button>
+    <button onclick="assignSeat(2)">Economy (6-10)</button>
+    <p id="output"></p>
+    
+    <script>
+        const seats = new Array(10).fill(0);
+
+        function assignSeat(choice) {
+            let seatNumber = -1;
+            if (choice === 1) {
+                seatNumber = seats.findIndex((seat, index) => index < 5 && seat === 0);
+                if (seatNumber === -1) {
+                    if (confirm("First-class section is full. Would you like a seat in the economy section?")) {
+                        assignSeat(2);
+                    } else {
+                        alert("Next flight leaves in 3 hours.");
+                    }
+                    return;
+                }
+            } else if (choice === 2) {
+                seatNumber = seats.findIndex((seat, index) => index >= 5 && seat === 0);
+                if (seatNumber === -1) {
+                    if (confirm("Economy section is full. Would you like a seat in the first-class section?")) {
+                        assignSeat(1);
+                    } else {
+                        alert("Next flight leaves in 3 hours.");
+                    }
+                    return;
+                }
+            }
+
+            seats[seatNumber] = 1;
+            let passengerName = prompt("Enter your name:");
+            document.getElementById("output").innerHTML += `<p>Boarding Pass: ${passengerName}, Seat: ${seatNumber + 1}, Class: ${choice === 1 ? 'First Class' : 'Economy'}</p>`;
+        }
+    </script>
+</body>
+</html>
+
+Question-3
+Use Javascript to develop the web page as given in Fig.1 to calculate the Body Mass Index (BMI) and display the adult’s status through appropriate popup boxes. For example, the BMI rate of the men is 21, and then prints the status through a popup box as “Ideal Range” by triggering the event on a “Calculate” button. Note: Refer Table.1 to get the BMI criteria information. BMI=703*weight/Height2
+
+
+Code-
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>BMI Calculator</h2>
+        <label for="gender">Gender:</label>
+        <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+        
+        <label>Enter Your Weight (in pounds):</label>
+        <input type="number" id="weight"><br><br>
+        
+        <label>Enter Your Height:</label>
+        <input type="number" id="feet" placeholder="Feet"> 
+        <input type="number" id="inches" placeholder="Inches"><br><br>
+        
+        <button onclick="calculateBMI()">Calculate</button>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let feet = parseFloat(document.getElementById("feet").value);
+            let inches = parseFloat(document.getElementById("inches").value);
+            let gender = document.getElementById("gender").value;
+            
+            if (isNaN(weight) || isNaN(feet) || isNaN(inches)) {
+                alert("Please enter valid values.");
+                return;
+            }
+            
+            let heightInInches = (feet * 12) + inches;
+            let bmi = (703 * weight) / (heightInInches * heightInInches);
+            let status = "";
+            
+            if (gender === "male") {
+                if (bmi < 17.5) status = "Anorexia";
+                else if (bmi <= 20.7) status = "Underweight";
+                else if (bmi <= 26.4) status = "Ideal Range";
+                else if (bmi <= 27.8) status = "Marginally Overweight";
+                else if (bmi <= 31.1) status = "Overweight";
+                else status = "Very Overweight or Obese";
+            } else {
+                if (bmi < 17.5) status = "Anorexia";
+                else if (bmi <= 19.1) status = "Underweight";
+                else if (bmi <= 25.8) status = "Ideal Range";
+                else if (bmi <= 27.3) status = "Marginally Overweight";
+                else if (bmi <= 32.3) status = "Overweight";
+                else status = "Very Overweight or Obese";
+            }
+            
+            alert(`Your BMI is ${bmi.toFixed(2)}. Status: ${status}`);
+        }
+    </script>
+</body>
+</html>
+
+
