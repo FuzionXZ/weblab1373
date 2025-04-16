@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator 23BCE1373 </title>
+    <script>
+        function calculator() {
+            let num1 = parseFloat(prompt("Enter the first number:"));
+            let num2 = parseFloat(prompt("Enter the second number:"));
+            let operation = prompt("Choose an operation: +, -, *, /, %");
+
+            let result;
+            switch (operation) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 !== 0) {
+                        result = num1 / num2;
+                    } else {
+                        alert("Error: Division by zero is not allowed.");
+                        return;
+                    }
+                    break;
+                case "%":
+                    result = num1 % num2;
+                    break;
+                default:
+                    alert("Invalid operation! Please enter +, -, *, /, or %.");
+                    return;
+            }
+            alert(`Result: ${num1} ${operation} ${num2} = ${result}`);
+        }
+    </script>
+</head>
+<body onload="calculator()">
+    <h2>Basic Calculator</h2>
+    <p>Check the prompt windows to enter values and get the result.</p>
+</body>
+</html>
+
+
+Question-2
+Write a JavaScript program to use prompt() to ask for the user's age and alert() to
+confirm whether the user is eligible to drive.
+
+Code-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Eligibility Checker</title>
+    <script>
+        function checkDrivingEligibility() {
+            let age = parseInt(prompt("Enter your age:"));
+
+            if (isNaN(age) || age <= 0) {
+                alert("Please enter a valid age.");
+                return;
+            }
+
+            if (age >= 18) {
+                alert("You are eligible to drive! 🚗");
+            } else {
+                alert("Sorry, you are not old enough to drive yet. 🚫");
+            }
+        }
+    </script>
+</head>
+<body onload="checkDrivingEligibility()">
+    <h2>Driving Eligibility Checker</h2>
+    <p>Check the prompt window to enter your age.</p>
+</body>
+</html>
+
+
+Question 03
+
+Write a JavaScript program to use confirm() to ask the user for confirmation whether he is
+a student while entering his registration number
+
+Code-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Confirmation</title>
+    <script>
+        function checkStudentStatus() {
+            let regNumber = prompt("Enter your registration number:");
+
+            if (!regNumber) {
+                alert("Registration number cannot be empty.");
+                return;	
+            }
+
+            let isStudent = confirm("Are you a student?");
+            
+            if (isStudent) {
+                alert(`Thank you! Your registration number is: ${regNumber}`);
+            } else {
+                alert("You must be a student to proceed.");
+            }
+        }
+    </script>
+</head>
+<body onload="checkStudentStatus()">
+    <h2>Student Confirmation</h2>
+    <p>Check the prompt window to enter your registration number.</p>
+</body>
+</html>
+
+
+Question-4
+A General Service company hired you to calculate the labour cost and total charge for the
+services rendered to their client based on the formula given below:
+Rate per hour : Rs.45/-
+Labour cost : Rate per hour * hours work Total Charge : Labour cost + Cost of Materials.
+Write a JavaScript program (Internal) using suitable pop-up boxes to read the necessary inputs and display the output.
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Charge Calculator</title>
+    <script>
+        function calculateCharges() {
+            // Define rate per hour
+            const ratePerHour = 45;
+
+            // Get input from user
+            let hoursWorked = prompt("Enter the number of hours worked:", "0");
+            let costOfMaterials = prompt("Enter the cost of materials (Rs.):", "0");
+
+            // Convert input to numbers
+            hoursWorked = parseFloat(hoursWorked);
+            costOfMaterials = parseFloat(costOfMaterials);
+
+            // Validate input
+            if (isNaN(hoursWorked) || isNaN(costOfMaterials) || hoursWorked < 0 || costOfMaterials < 0) {
+                alert("Please enter valid positive numbers.");
+                return;
+            }
+
+            // Calculate costs
+            let labourCost = ratePerHour * hoursWorked;
+            let totalCharge = labourCost + costOfMaterials;
+
+            // Display the results
+            alert(`Labour Cost: Rs.${labourCost.toFixed(2)}\nTotal Charge: Rs.${totalCharge.toFixed(2)}`);
+        }
+    </script>
+</head>
+<body onload="calculateCharges()">
+</body>
+</html>
+
+
+Question-5
+
+Write a JavaScript program to accept reg.no and name.
+Display your registration number as shown below by applying inline style using document.write.
+Display your name as shown below by applying inline style using innerHTML
+
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Display</title>
+</head>
+<body>
+
+    <script>
+        // Define user inputs
+        let regNo = "23BCE1373";
+        let name = "K Nithin";
+
+        // Display registration number using document.write() with inline styling
+        document.write(`<div style="border: 3px solid red; display: inline-block; padding: 10px; font-weight: bold; font-size: 20px; text-align: center;">${regNo}</div>`);
+
+        // Display name using innerHTML with inline styling
+    </script>
+
+    <div id="nameDisplay" style="margin-top: 20px; text-align: center;"></div>
+
+    <script>
+        document.getElementById("nameDisplay").innerHTML = `<div style="border: 2px solid black; display: inline-block; padding: 10px; font-size: 20px; font-weight: bold; color: red;">*${name}*</div>`;
+    </script>
+
+</body>
+</html>
+
+
+Question-6
+
+A circus has an entry ticket booth. Visitors come to the booth, and order tickets for adults
+and children. The booth attendant collects the entry fee, and prints out the tickets. Write
+a JavaScript program (External) to display the total amount in a given text box on clicking
+‘Total’ button.
+
+Html-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booth</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <h2>TICKET BOOTH</h2>
+    
+    <label>Adults (₹10 each): </label>
+    <input type="number" id="adultTickets" min="0"><br><br>
+
+    <label>Children (₹5 each): </label>
+    <input type="number" id="childTickets" min="0"><br><br>
+
+    <button id="calculateBtn">Total</button>
+    <input type="text" id="totalAmount" readonly>
+
+</body>
+</html>
+
+
+
+Javascript-
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("calculateBtn").addEventListener("click", calculateTotal);
+});
+
+function calculateTotal() {
+    const adultPrice = 10;
+    const childPrice = 5;
+    let adults = document.getElementById("adultTickets").value;
+    let children = document.getElementById("childTickets").value;
+    adults = adults ? parseInt(adults) : 0;
+    children = children ? parseInt(children) : 0;
+    console.log("Adults:", adults, "Children:", children);
+    let total = (adults * adultPrice) + (children * childPrice);
+    document.getElementById("totalAmount").value = "₹" + total;
+}
