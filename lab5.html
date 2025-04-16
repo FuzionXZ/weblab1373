@@ -1,0 +1,324 @@
+Index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1373</title>
+</head>
+<frameset rows="10%, 80%, 10%" border="0">
+    <frame src="header.html" name="headerFrame" scrolling="no" noresize>
+    
+    <frameset cols="20%, 60%, 20%" border="0">
+        
+        <frame src="navigation.html" name="navFrame" scrolling="no" noresize>
+        
+        <frame src="about.html" name="mainFrame" scrolling="auto">
+        
+        <frame src="quickfacts.html" name="asideFrame" scrolling="no" noresize>
+    </frameset>
+    
+    <frame src="footer.html" name="footerFrame" scrolling="no" noresize>
+
+</frameset>
+<noframes>
+    <body>
+        <p>Your browser does not support frames. Please use a modern browser.</p>
+    </body>
+</noframes>
+</html>
+
+
+Header.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 0; background-color: #f4f4f4; text-align: center; font-family: Arial, sans-serif; }
+        h1 { margin: 0; padding: 20px; font-size: 24px; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>My Professional Resume</h1>
+</body>
+</html>
+
+
+
+Navigation.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 0; background-color: #dbdbdbe7; font-family: Arial, sans-serif; padding: 10px;}
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px; }
+        a { text-decoration: none; color: #333; font-size: 16px; }
+        a:hover { color: #007BFF; }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="about.html" target="mainFrame">About Me</a></li>
+        <li><a href="education.html" target="mainFrame">Education</a></li>
+        <li><a href="experience.html" target="mainFrame">Experience</a></li>
+        <li><a href="skills.html" target="mainFrame">Skills</a></li>
+        <li><a href="media.html" target="mainFrame">Media</a></li>
+    </ul>
+</body>
+</html>
+
+
+
+About.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 20px; font-family: Arial, sans-serif; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+
+    <div style="padding: 25px; background-color: #e5e5e5; text-align: center;">
+        <h1>K Nithin</h1>
+        <p>Software Engineer | Tactical Thinker | Innovator</p>
+    </div>
+
+    <div style="text-align: center;">
+        <h2>About Me</h2>
+        <p>A motivated software engineer with 5+ years of experience in building scalable web applications.</p>
+        <img src="premium_photo-1682096252599-e8536cd97d2b.jpg" alt="Profile Picture" style="width: 100px; border-radius: 10%">
+        <p>K Nithin - Software Engineer</p>
+    </div>
+</body>
+</html>
+
+ 
+
+Education.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 20px; font-family: Arial, sans-serif; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h2>Education</h2>
+    <p>Bachelor's in Computer Science</p>
+    <p> Vellore Institute of Technology (2023 - 2027)</p>
+</body>
+</html>
+
+
+Experience.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 20px; font-family: Arial, sans-serif; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Experience</h1>
+    <h3>Software Engineer</h3>
+    <p>Macrohard: 2024 - Present</p>
+    <ul style="list-style:square;">
+        <li style="margin-bottom: 5px;">Developed and Managed Web Applications using Javascript and Python</li>
+        <li>Optimized database perfomance, improving querry speed by 50%</li>
+    </ul>
+</body>
+</html>
+
+
+Skills.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { 
+            margin: 22px; 
+            font-family: Arial, sans-serif; 
+        }
+        h2 { 
+            color: black; 
+        }
+        progress { 
+            width: 100%; 
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Skills</h2>
+    <p>Programming</p>
+    <progress value="90" max="100"></progress>
+    <p>Problem solving</p>
+    <progress value="85" max="100"></progress>
+    <p>Project Management</p>
+    <progress value="80" max="100" class="ok"></progress>
+</body>
+</html>
+
+
+Media.html
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Media Page</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      frame {
+        border: none;
+      }
+      h2 {
+        color: #333;
+        text-align: center;
+      }
+      .media-container {
+
+        gap: 20px;
+        margin: 20px;
+      }
+      canvas {
+        border: 1px solid #ccc;
+      }
+      .svg-container {
+        height: 100%;
+      }
+      iframe {
+        border: 1px solid #ccc;
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Media</h2>
+    <div class="media-container">
+      <!-- Audio Player -->
+      <h4>Audio</h4>
+      <audio controls>
+        <source src="sample-audio.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+
+      <!-- Video Player -->
+      <h4>Video</h4>
+      <video width="320" height="240" controls>
+        <source src="sample-vid.mp4" type="video/mp4" />
+        Your browser does not support the video element.
+      </video>
+
+      <!-- Canvas Element -->
+      <h4>Canvas</h4>
+      <canvas id="myCanvas" width="300" height="300">
+      </canvas>
+
+      <!-- SVG -->
+      <h4>SVG</h4>
+      <div class="svg-container">
+        <iframe src="house-svg.svg" title="SVG Content"></iframe>
+      </div>
+    </div>
+
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = "#FF0000"; 
+      ctx.fillRect(50, 50, 150, 100);
+
+      ctx.beginPath();
+      ctx.arc(200, 200, 50, 0, 2 * Math.PI);
+      ctx.fillStyle = "#00FF00"; 
+      ctx.fill();
+  </script>
+
+  </body>
+</html>
+
+<?xml version="1.0" encoding="utf-8"?>
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 300 300" 
+    width="300" 
+    height="300">
+
+    <rect x="135" y="180" width="30" height="60" fill="#8B4513" />
+
+    <rect x="105" y="140" width="30" height="30" fill="#ADD8E6" />
+    <rect x="165" y="140" width="30" height="30" fill="#ADD8E6" />
+
+    <polygon 
+        points="270,20 274,30 285,30 276,38 280,50 270,42 260,50 264,38 255,30 266,30" 
+        fill="#FFD700" />
+
+    <circle cx="230" cy="30" r="18" fill="#FFD700" /> 
+    <circle cx="240" cy="30" r="12" fill="#FFFFFF" /> 
+</svg>
+
+
+
+Quickfacts.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { margin: 20px; font-family: Arial, sans-serif; background-color: #dbdbdbe7; }
+        ul { padding-left: 10px; list-style: none; color: black;}
+        li { margin: 10px 0; }
+        li::marker{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Quick Facts</h2>
+    <ul style="list-style:disc">
+        <li>Proficient in HTML5, CSS3, and JavaScript</li>
+        <li>5+ years of professional experience</li>
+        <li>Certified Scrum Master</li>
+        <li>Published 3 technical articles</li>
+    </ul>
+</body>
+</html>
+
+
+Footer.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body { 
+            background-color: #020520ea; 
+            color: white; 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            padding-bottom: 10px;
+        }
+        .blue-email {
+            color: #36a5f4; 
+        }
+    </style>
+</head>
+<body>
+    <p>&copy; 2025 K Nithin. All Rights Reserved.</p>
+    <p>Contact: <span class="blue-email">nithink2175@gmail.com</span></p>
+</body>
+</html>
