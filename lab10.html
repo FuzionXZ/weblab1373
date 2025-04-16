@@ -1,0 +1,403 @@
+Question-1
+Assume that you are appointed as Data Analytics Engineer for a hospital. Ages for 8
+patients are given below.
+P-Id 	Name 	Age
+1 	Alen 	39
+2 	Deena 	47
+3 	Diana 	21
+4 	Jack 	54
+5 	Jain 	23
+6 	Kelvin 	61
+7 	Louis 	69
+8 	Rex 	49
+Write a JavaScript program using appropriate functions to
+(i) sort the data in descending order according to the patient’s age and display the same
+(ii) check whether a particular P-Id is presented in the list (iii) filter the patients by age range.
+
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Data Analytics</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hospital Patient Data</h2>
+
+    <button onclick="displaySortedPatients()">Sort Patients by Age (Descending)</button>
+    <button onclick="checkPatient()">Check if P-Id Exists</button>
+    <button onclick="filterByAge()">Filter Patients by Age Range</button>
+
+    <h3>Results:</h3>
+    <div id="output"></div>
+
+    <script>
+        // Patient data
+        const patients = [
+            { PId: 1, Name: "Alen", Age: 39 },
+            { PId: 2, Name: "Deena", Age: 47 },
+            { PId: 3, Name: "Diana", Age: 21 },
+            { PId: 4, Name: "Jack", Age: 54 },
+            { PId: 5, Name: "Jain", Age: 23 },
+            { PId: 6, Name: "Kelvin", Age: 61 },
+            { PId: 7, Name: "Louis", Age: 69 },
+            { PId: 8, Name: "Rex", Age: 49 }
+        ];
+
+        // (i) Sort by Age in descending order
+        function sortPatientsByAgeDescending(patients) {
+            return patients.sort((a, b) => b.Age - a.Age);
+        }
+
+        function displaySortedPatients() {
+            const sortedPatients = sortPatientsByAgeDescending([...patients]);
+            displayTable(sortedPatients);
+        }
+
+        // (ii) Check if a particular P-Id exists
+        function isPatientPresent(patients, pid) {
+            return patients.some(patient => patient.PId === pid);
+        }
+
+        function checkPatient() {
+            const pid = parseInt(prompt("Enter P-Id to check:"));
+            const resultDiv = document.getElementById("output");
+            resultDiv.innerHTML = `<p>${isPatientPresent(patients, pid) ? "✅ Patient is present" : "❌ Patient not found"}</p>`;
+        }
+
+        // (iii) Filter patients by age range
+        function filterPatientsByAgeRange(patients, minAge, maxAge) {
+            return patients.filter(patient => patient.Age >= minAge && patient.Age <= maxAge);
+        }
+
+        function filterByAge() {
+            const minAge = parseInt(prompt("Enter minimum age:"));
+            const maxAge = parseInt(prompt("Enter maximum age:"));
+            const filteredPatients = filterPatientsByAgeRange(patients, minAge, maxAge);
+            displayTable(filteredPatients);
+        }
+
+        // Function to create and display table
+        function displayTable(data) {
+            if (data.length === 0) {
+                document.getElementById("output").innerHTML = "<p>No patients found in this range.</p>";
+                return;
+            }
+
+            let table = `<table>
+                <tr>
+                    <th>P-Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>`;
+
+            data.forEach(patient => {
+                table += `<tr>
+                    <td>${patient.PId}</td>
+                    <td>${patient.Name}</td>
+                    <td>${patient.Age}</td>
+                </tr>`;
+            });
+
+            table += `</table>`;
+            document.getElementById("output").innerHTML = table;
+        }
+    </script>
+</body>
+</html>
+
+
+Question-2
+
+Write a JavaScript program that performs the following actions using different DOM 
+selection methods: 
+(a) Using getElementById: 
+Select the <h1> element and change its text to "Updated Title". 
+(b) Using getElementsByName: 
+Select the input field with the name="username" and set its value to "John Doe". 
+Select all radio buttons with the name gender and print the value of the selected radio 
+button.
+(c) Using getElementsByTagName: 
+Count and print the total number of <p> elements on the page. 
+Select all <li> elements inside the <ul> and print their text content to the console. 
+(d) Using getElementsByClassName: 
+Change the background color of all elements with the class input-field to lightblue. 
+(e) Using querySelector: 
+Select the first <p> element with the class info and update its text to "This is the 
+first info paragraph". 
+Select the first radio button with the name gender and check it programmatically. 
+(f) Using querySelectorAll: 
+Select all <p> elements with the class info, loop through them, and print their text 
+content. 
+Select all checkboxes with the class hobby, loop through them, set them as checked and 
+print the checked values.
+
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selection Methods</title>
+    <style>
+        .input-field {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="title">Original Title</h1>
+
+    <input type="text" name="username" class="input-field" placeholder="Enter your name">
+    
+    <h2>Select Gender:</h2>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <input type="radio" name="gender" value="Other"> Other
+
+    <h2>Paragraphs:</h2>
+    <p class="info">First paragraph.</p>
+    <p class="info">Second paragraph.</p>
+    <p>Another paragraph without class.</p>
+
+    <h2>List of Items:</h2>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <h2>Select Your Hobbies:</h2>
+    <input type="checkbox" class="hobby" value="Reading"> Reading
+    <input type="checkbox" class="hobby" value="Gaming"> Gaming
+    <input type="checkbox" class="hobby" value="Sports"> Sports
+
+    <script>
+        // (a) Using getElementById
+        document.getElementById("title").textContent = "Updated Title";
+
+        // (b) Using getElementsByName
+        document.getElementsByName("username")[0].value = "John Doe";
+
+        let genderRadios = document.getElementsByName("gender");
+        for (let radio of genderRadios) {
+            if (radio.checked) {
+                console.log("Selected Gender:", radio.value);
+            }
+        }
+
+        // (c) Using getElementsByTagName
+        let pElements = document.getElementsByTagName("p");
+        console.log("Total number of <p> elements:", pElements.length);
+
+        let liElements = document.getElementsByTagName("li");
+        for (let li of liElements) {
+            console.log("List Item:", li.textContent);
+        }
+
+        // (d) Using getElementsByClassName
+        let inputFields = document.getElementsByClassName("input-field");
+        for (let input of inputFields) {
+            input.style.backgroundColor = "lightblue";
+        }
+
+        // (e) Using querySelector
+        document.querySelector(".info").textContent = "This is the first info paragraph.";
+        document.querySelector("input[name='gender']").checked = true;
+
+        // (f) Using querySelectorAll
+        let infoParagraphs = document.querySelectorAll(".info");
+        infoParagraphs.forEach(p => console.log("Info Paragraph:", p.textContent));
+
+        let hobbies = document.querySelectorAll(".hobby");
+        hobbies.forEach(checkbox => {
+            checkbox.checked = true;
+            console.log("Checked Hobby:", checkbox.value);
+        });
+    </script>
+
+</body>
+</html>
+
+  Question-3
+
+Design an order form as below and implement a JavaScript program to pass the entries to
+another page and display the receipt
+
+
+
+Code-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Order Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5e5d3;
+            text-align: center;
+        }
+        .container {
+            width: 350px;
+            background-color: #788066;
+            padding: 20px;
+            margin: 50px auto;
+            border-radius: 10px;
+            color: white;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 90%;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .product {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .product img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .product span {
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 10px;
+        }
+        .product input[type="number"] {
+            width: 50px;
+            text-align: center;
+            border-radius: 5px;
+            border: none;
+            padding: 5px;
+            display: none;
+        }
+        .btn {
+            background-color: #c4a77d;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Grocery Order Form</h2>
+
+        <div class="input-group">
+            <label>Customer Name</label>
+            <input type="text" id="customerName">
+        </div>
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="text" id="phoneNumber">
+        </div>
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="email">
+        </div>
+
+        <h3>Products</h3>
+
+        <div class="product">
+            <input type="checkbox" id="appleCheck" onclick="toggleInput('appleQty')">
+            <img src="apple.png" alt="Apple">
+            <span>Apple - $10/kg</span>
+            <input type="number" id="appleQty" min="0" placeholder="kg">
+        </div>
+
+        <div class="product">
+            <input type="checkbox" id="bananaCheck" onclick="toggleInput('bananaQty')">
+            <img src="banana.png" alt="Banana">
+            <span>Banana - $5/kg</span>
+            <input type="number" id="bananaQty" min="0" placeholder="kg">
+        </div>
+
+        <div class="product">
+            <input type="checkbox" id="avocadoCheck" onclick="toggleInput('avocadoQty')">
+            <img src="avocado.png" alt="Avocado">
+            <span>Avocado - $7/kg</span>
+            <input type="number" id="avocadoQty" min="0" placeholder="kg">
+        </div>
+
+        <button class="btn" onclick="submitOrder()">SUBMIT</button>
+    </div>
+
+    <script>
+        function toggleInput(inputId) {
+            let inputField = document.getElementById(inputId);
+            let checkbox = document.getElementById(inputId.replace("Qty", "Check"));
+        
+            if (checkbox.checked) {
+                inputField.style.display = "inline-block"; // Show when checked
+            } else {
+                inputField.style.display = "none"; // Hide when unchecked
+                inputField.value = ""; // Reset the value when unchecked
+            }
+        }
+        
+        function submitOrder() {
+            const customerName = document.getElementById("customerName").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const email = document.getElementById("email").value;
+
+            const orderData = {
+                customerName,
+                phoneNumber,
+                email,
+                appleQty: document.getElementById("appleCheck").checked ? document.getElementById("appleQty").value || 0 : 0,
+                bananaQty: document.getElementById("bananaCheck").checked ? document.getElementById("bananaQty").value || 0 : 0,
+                avocadoQty: document.getElementById("avocadoCheck").checked ? document.getElementById("avocadoQty").value || 0 : 0
+            };
+
+            localStorage.setItem("order", JSON.stringify(orderData));
+
+            window.location.href = "receipt.html";
+        }
+    </script>
+
+</body>
+</html>
+
+  
